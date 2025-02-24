@@ -1,0 +1,106 @@
+<div class="container-sm">
+  <div class="slider pb-4 pt-5 ">
+
+    <div class="row slide1 ">
+      <div class="col-md-1 "></div>
+      <div class="col-9 p-xl-3 p-md-1">
+        <div class=" bg-transparent border-0 mb-2 mt-2 pt-md-5 pb-md-5 mt-md-5 mb-md-5">
+          <div class="card-body">
+            <h1 class="card-title fw-bold w-100 mb-xl-5 mt-xl-5">Скидки на травянные чаи</h1>
+            <p class="card-text pt-4 pb-4 fs-xl-18">
+              Узнай все подробности
+            </p>
+            <a routerLink="catalog" class="btn btn-primary stretched-link mt-xl-5 mb-xl-5 catalog-button"
+               style=" --bs-btn-padding-x: 45px;  --bs-btn-padding-y: 7px;" [ngClass]="{ 'pulse-button': isActive }">Каталог</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="accordion-block">
+  <h2 class="text-center mt-5 mb-5 fw-bold">
+    Ответы на часто задаваемые вопросы
+  </h2>
+  <div class="container-sm pb-5">
+    <div class="products row ">
+      <div class="col-1 col-lg-2"></div>
+      <div class="col-10 col-lg-8">
+        <div id="accordion">
+          <h3 class="select-accord bg-primary d-flex align-content-center justify-content-between p-md-3 rounded-3">
+            <span class=" fw-bold text-white">Собираете ли вы подарочные боксы?</span>
+            <div class="select-icon">
+              <img src="assets/images/down.png" height="20" width="20" alt="">
+            </div>
+          </h3>
+          <div class="border-0">
+            <p>
+              Да, у нас есть такая услуга. Мы можем собрать подарочный бокс на любой вкус, объем и
+              стоимость!
+            </p>
+          </div>
+          <h3 class="select-accord bg-primary d-flex align-content-center justify-content-between p-md-3 rounded-3">
+            <span class=" fw-bold text-white">Сколько у вас разновидностей чая?</span>
+            <div class="select-icon">
+              <img src="assets/images/nextUp.png">
+            </div>
+          </h3>
+          <div class="border-0">
+            <p>
+              У нас более 50 уникальных разновидностей чая! 🌟
+              Каждый из них был тщательно отобран, чтобы предложить вам неповторимый вкус и аромат. Мы
+              предлагаем как классические черные и зеленые чаи, так и редкие сорта, такие как улун, белый
+              чай и травяные смеси.
+            </p>
+          </div>
+          <h3 class="select-accord bg-primary d-flex align-content-center justify-content-between p-md-3 rounded-3">
+            <span class=" fw-bold text-white">В какой срок осуществляется доставка?</span>
+            <div class="select-icon">
+              <img src="assets/images/nextUp.png">
+            </div>
+          </h3>
+          <div class="border-0">
+            <p>
+              Сроки доставки зависят от региона и способа доставки. В среднем, доставка чая может занимать
+              от 4 дней до 2 недель, в зависимости от удаленности вашего региона от места отправления.
+          </div>
+          <h3 class="select-accord bg-primary d-flex align-content-center justify-content-between p-md-3 rounded-3">
+            <span class="fw-bold text-white">У вас обновляется ассортимент?</span>
+            <div class="select-icon">
+              <img src="assets/images/nextUp.png">
+            </div>
+          </h3>
+          <div class="border-0">
+            <p>
+              Да, у нас регулярно обновляется ассортимент! 🌟
+              Мы стремимся предложить нашим клиентам только самые свежие и интересные сорта чая. Каждый
+              месяц наши эксперты по чаю исследуют новые купажи и редкие сорта, чтобы добавить их в нашу
+              коллекцию.
+            </p>
+
+          </div>
+          <h3 class="select-accord bg-primary d-flex align-content-center justify-content-between p-md-3 rounded-3">
+            <span class="fw-bold text-white">Какого объема у вас пачки чая?</span>
+            <div class="select-icon">
+              <img src="assets/images/nextUp.png">
+            </div>
+          </h3>
+          <div class="border-0">
+            <p>
+              Мы предлагаем чай в пачках различного объема, чтобы удовлетворить потребности каждого
+              покупателя! 🌟
+            </p>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-1 col-lg-2"></div>
+    </div>
+  </div>
+</div>
+
+<div class="popup" *ngIf="isPopup" (click)="closePopup()">
+  <span class="popup-text">Посмотрите наши чайные коллекции</span>
+  <a routerLink="catalog" class="popup-btn">Смотреть</a>
+</div>

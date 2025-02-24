@@ -1,0 +1,79 @@
+<div class="container-sm mb-5 ">
+  <div class="order-block row mt-2">
+    <div class="col-1 col-md-2 col-lg-3"></div>
+    <div class="col-10 col-md-8 col-lg-6 wow animate__lightSpeedInRight">
+      <h2 class="order-title text-center mb-5 mt-5 fw-bold">Сделать заказ</h2>
+      <form [formGroup]="orderForm" (ngSubmit)="onSubmit()" class="order-form row g-4 mb-5 " *ngIf="isShowForm">
+        <div class="col-12">
+          <label for="product" class="form-label">Товар</label>
+          <input formControlName="product" type="text" class="form-control" id="product" readonly>
+        </div>
+        <div class="col-12 col-md-4">
+          <label for="inputName" class="form-label">Имя</label>
+          <input type="text" formControlName="name" class="form-control" id="inputName">
+          <div
+            *ngIf="orderForm.get('name')?.invalid && (orderForm.get('name')?.dirty || orderForm.get('name')?.touched)">
+            <small class="text-danger">Пожалуйста, введите корректное имя.</small>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <label for="inputLastname" class="form-label">Фамилия</label>
+          <input type="text" formControlName="last_name" class="form-control" id="inputLastname">
+          <div
+            *ngIf="orderForm.get('last_name')?.invalid && (orderForm.get('last_name')?.dirty || orderForm.get('last_name')?.touched)">
+            <small class="text-danger">Пожалуйста, введите корректную фамилию.</small>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <label for="inputPhone" class="form-label">Телефон</label>
+          <input type="number" formControlName="phone" class="form-control" id="inputPhone">
+          <div
+            *ngIf="orderForm.get('phone')?.invalid && (orderForm.get('phone')?.dirty || orderForm.get('phone')?.touched)">
+            <small class="text-danger">Пожалуйста, введите корректный номер телефона.</small>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <label for="inputCountry" class="form-label">Страна</label>
+          <input type="text" formControlName="country" class="form-control" id="inputCountry">
+          <div
+            *ngIf="orderForm.get('country')?.invalid && (orderForm.get('country')?.dirty || orderForm.get('country')?.touched)">
+            <small class="text-danger">Пожалуйста, введите корректное наименование.</small>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <label for="inputIndex" class="form-label">Индекс</label>
+          <input type="text" formControlName="zip" class="form-control" id="inputIndex">
+          <div *ngIf="orderForm.get('zip')?.invalid && (orderForm.get('zip')?.dirty || orderForm.get('zip')?.touched)">
+            <small class="text-danger">Пожалуйста, введите корректно индекс.</small>
+          </div>
+        </div>
+        <div class="col-12">
+          <label for="inputAddress" class="form-label">Адрес</label>
+          <input type="text" formControlName="address" class="form-control" id="inputAddress">
+          <div
+            *ngIf="orderForm.get('address')?.invalid && (orderForm.get('address')?.dirty || orderForm.get('address')?.touched)">
+            <small class="text-danger">Пожалуйста, введите корректно адрес.</small>
+          </div>
+        </div>
+        <div class="col-12">
+          <label for="comment" class="form-label">Комментарий к заказу</label>
+          <input type="text" formControlName="comment" class="form-control" id="comment">
+        </div>
+
+
+        <div class="col-12 d-flex justify-content-between align-content-center">
+
+          <button type="submit" class="btn btn-primary hvr-float-shadow" [disabled]="orderForm.invalid || isDisabled">
+            Отправить
+          </button>
+          <div class="error-message ml-30 text-danger" *ngIf="isShowError">Произошла ошибка. Попробуйте еще раз</div>
+        </div>
+      </form>
+      <div class="order-thank-you " id="order-thank-you" *ngIf="isShowMessage">
+        <h2 class="text-center text-primary">Спасибо за заказ. Мы свяжемся с вами в ближайшее время!</h2>
+      </div>
+    </div>
+    <div class="col-1 col-md-2 col-lg-3"></div>
+  </div>
+
+</div>

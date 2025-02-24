@@ -1,0 +1,24 @@
+<div class=" pb-4 product">
+  <div class="d-flex align-content-center justify-content-center mb-5 "
+       *ngIf="product$ | async as product" id="tea-collection">
+    <div class="" *ngIf="product">
+      <div class="card-my">
+        <img src="{{product.image}}" class="card-img-top" alt="tea"/>
+        <div class="product-description">
+          <h5 class="card-title fw-bold">{{ product.title }}</h5>
+          <p class="product-description-text">
+            {{ product.description }}
+          </p>
+          <div class="button-block d-flex">
+            <button class="btn btn-primary stretched-link order-button"
+                    (click)="orderProduct(product)">Купить
+            </button>
+            <div class="price ">Цена: {{ product.price }}</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

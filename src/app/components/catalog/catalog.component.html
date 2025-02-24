@@ -1,0 +1,48 @@
+<div class="catalog">
+  <form class="d-flex search p-2">
+    <input #searchInput
+           class="form-control me-2"
+           type="text"
+           placeholder="Поиск чая"
+           aria-label="Search"/>
+    <button #searchButton
+            class="btn btn-outline-primary"
+            type="button"
+            (click)="onSearch(searchInput, searchButton)">
+      Найти
+    </button>
+    <button class="btn btn-outline-primary" type="button" (click)="clearSearch()">
+      Очистить
+    </button>
+  </form>
+  <div class="catalog-cards">
+    <h3 class="text-center mb-5 mt-5 fw-bold ">{{ catalogTitle }}</h3>
+    <div class="container-sm pb-4 ">
+      <div class=" row d-flex align-content-center justify-content-center g-3 mb-3 " id="tea-collection">
+        <div class="col-12 col-md-6 col-xl-4" *ngFor="let product of products;">
+          <div class="card" style="max-width: 26rem; min-width: 16rem">
+            <img src="{{product.image}}" class="card-img-top" alt="tea"/>
+            <div class="card-body">
+              <h5 class="card-title fw-bold">{{ product.title }}</h5>
+              <p class="card-text">
+                {{ product.description | truncateText }}
+              </p>
+              <div class="button-block d-flex">
+                <button class="btn btn-primary stretched-link btn-product"
+                        (click)="learnMore(product)">Подробнее
+                </button>
+                <div class="price ">Цена: {{ product.price }}</div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="loader" *ngIf="isLoading">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Загрузка...</span>
+    </div>
+  </div>
+</div>
