@@ -3,7 +3,7 @@ import {ProductType} from '../../types/productTypes';
 import {ProductService} from '../../services/product.service';
 import {AsyncPipe, NgIf} from '@angular/common';
 import {ActivatedRoute, Router,} from '@angular/router';
-import {map, Observable, switchMap} from 'rxjs';
+import {catchError, Observable, of, switchMap} from 'rxjs';
 import {OrderService} from '../../services/order.service';
 
 @Component({
@@ -33,12 +33,15 @@ export class ProductComponent implements OnInit {
         const productId = params.get('id');
 
         if (productId) {
-          return this.productService.getProducts().pipe(
-            map(products => products.find(product => product.id === parseInt(productId)))
+          return this.productService.getProductById(productId).pipe(
+            catchError(error => {
+              console.error('Ошибка при получении продукта:', error);
+              return of(undefined);
+            })
           );
         } else {
           console.error('Product ID is missing.');
-          return new Observable<undefined>();
+          return of(undefined);
         }
       })
     );

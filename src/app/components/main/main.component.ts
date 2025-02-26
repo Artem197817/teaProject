@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {RouterLink} from '@angular/router';
-import {NgClass, NgIf} from '@angular/common';
+import {NgClass} from '@angular/common';
 import {Subscription, timer} from 'rxjs';
 
 
@@ -12,21 +12,26 @@ declare var $: any;
   templateUrl: './main.component.html',
   imports: [
     RouterLink,
-    NgIf,
     NgClass
   ],
   styleUrl: './main.component.less'
 })
 export class MainComponent implements OnInit, OnDestroy {
 
- protected isPopup: boolean = false;
- private subscription: Subscription = new Subscription();
- private subscriptionActive: Subscription = new Subscription();
+  protected isPopup: boolean = false;
+  private subscription: Subscription = new Subscription();
+  private subscriptionActive: Subscription = new Subscription();
   protected isActive: boolean = false;
+  private popupVisibility: string | null = '0';
+  private keyPopupVisibility: string = 'popupVisibility';
+
   ngOnInit() {
     this.initializeAccordion();
     this.subscription = timer(10000).subscribe(() => {
-      this.isPopup = true;
+      this.popupVisibility = localStorage.getItem(this.keyPopupVisibility);
+      if (!this.popupVisibility || this.popupVisibility === '0') {
+        this.isPopup = true;
+      }
     })
     this.subscriptionActive = timer(5000).subscribe(() => {
       this.isActive = true;
@@ -54,12 +59,15 @@ export class MainComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.subscription.unsubscribe();
     this.subscriptionActive.unsubscribe();
+    localStorage.setItem(this.keyPopupVisibility, '1')
   }
-  closePopup(): void {
+
+  protected closePopup(): void {
     this.isPopup = false;
+    localStorage.setItem(this.keyPopupVisibility, '1')
   }
 
 }

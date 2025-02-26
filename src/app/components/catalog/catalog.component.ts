@@ -23,17 +23,19 @@ export class CatalogComponent implements OnInit, OnDestroy {
 
   protected products: ProductType[] = []
   protected catalogTitle = 'Наши чайные коллекции';
-  protected inputElement: HTMLInputElement | null = null;
+  private inputElement: HTMLInputElement | null = null;
   protected isLoading: boolean = true;
+  private query: string = '';
+  private subscription: Subscription = new Subscription();
 
   constructor(protected productService: ProductService, private router: Router) {
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.getProducts();
   }
 
-  getProducts() {
+  private getProducts() {
     this.isLoading = true;
     this.productService.getProducts()
       .subscribe({
@@ -49,24 +51,24 @@ export class CatalogComponent implements OnInit, OnDestroy {
 
   }
 
-  learnMore(product: ProductType): void {
+  protected learnMore(product: ProductType): void {
     this.router.navigate(['/product', product.id]);
 
   }
 
 
-  private subscription: Subscription = new Subscription();
-
-  onSearch(input: HTMLInputElement, button: HTMLElement): void {
+  protected onSearch(input: HTMLInputElement, button: HTMLElement): void {
 
     const button$ = fromEvent(button, 'click');
-    const query = input.value;
+
     if (input) {
       this.inputElement = input;
     }
     this.subscription.add(
       button$.pipe(
         exhaustMap(() => {
+          const query = input.value;
+          this.query = query;
           this.isLoading = true;
           return this.productService.searchProduct(query).pipe(
             tap((response) => {
@@ -81,7 +83,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
       ).subscribe(() => {
         this.isLoading = false;
         if (this.products.length > 0) {
-          this.catalogTitle = "Результат поиска по запросу " + query;
+          this.catalogTitle = "Результат поиска по запросу " + this.query;
         } else {
           this.catalogTitle = "Ничего не найдено"
         }
@@ -89,11 +91,11 @@ export class CatalogComponent implements OnInit, OnDestroy {
     );
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
-  clearSearch() {
+  protected clearSearch() {
     this.getProducts();
     this.catalogTitle = 'Наши чайные коллекции';
     if (this.inputElement) {

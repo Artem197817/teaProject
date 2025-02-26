@@ -37,7 +37,7 @@ export class OrderComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.orderService.selectedProduct$.subscribe(product => {
       if (product && product.title) {
         this.orderForm.patchValue({product: product.title});
@@ -48,7 +48,7 @@ export class OrderComponent implements OnInit {
   }
 
 
-  onSubmit() {
+  protected onSubmit() {
     this.isDisabled = true
     this.orderService.orderBuy(this.orderForm.value)
       .subscribe({

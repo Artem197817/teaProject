@@ -100,7 +100,11 @@
   </div>
 </div>
 
-<div class="popup" *ngIf="isPopup" (click)="closePopup()">
-  <span class="popup-text">Посмотрите наши чайные коллекции</span>
-  <a routerLink="catalog" class="popup-btn">Смотреть</a>
-</div>
+@if (isPopup){
+  <div class="popup"  (click)="closePopup()">
+    <span class="close" (click)="closePopup()">&times;</span>
+    <span class="popup-text">Посмотрите наши чайные коллекции</span>
+    <a routerLink="catalog" class="popup-btn">Смотреть</a>
+  </div>
+}
+
