@@ -21,10 +21,10 @@ export class ProductComponent implements OnInit {
   product$: Observable<ProductType | undefined> = new Observable<ProductType>();
 
 
-  constructor(protected productService: ProductService,
-              private route: ActivatedRoute,
-              private router: Router,
-              private orderService: OrderService,) {
+  constructor(protected readonly productService: ProductService,
+              private readonly route: ActivatedRoute,
+              private readonly router: Router,
+              private readonly orderService: OrderService) {
   }
 
   ngOnInit() {

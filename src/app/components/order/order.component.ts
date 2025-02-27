@@ -23,7 +23,7 @@ export class OrderComponent implements OnInit {
   protected isDisabled: boolean = false;
 
   constructor(public fb: FormBuilder,
-              private orderService: OrderService,
+              private readonly orderService: OrderService,
   ) {
     this.orderForm = this.fb.group({
       product: [''],
